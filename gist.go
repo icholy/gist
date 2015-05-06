@@ -21,7 +21,6 @@ func init() {
 	flag.StringVar(&fileName, "f", "", "gist file name")
 	flag.BoolVar(&public, "p", false, "make gist public")
 	flag.StringVar(&token, "t", os.Getenv("GITHUB_TOKEN"), "github token")
-	flag.Parse()
 }
 
 type TokenSource oauth2.Token
@@ -79,6 +78,7 @@ func getFiles() (map[github.GistFilename]github.GistFile, error) {
 }
 
 func main() {
+	flag.Parse()
 	files, err := getFiles()
 	if err != nil {
 		log.Fatal(err)
