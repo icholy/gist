@@ -18,7 +18,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&fileName, "n", "", "gist file name")
+	flag.StringVar(&fileName, "f", "", "gist file name")
 	flag.BoolVar(&public, "p", false, "make gist public")
 	flag.StringVar(&token, "t", os.Getenv("GITHUB_TOKEN"), "github token")
 	flag.Parse()

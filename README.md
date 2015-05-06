@@ -9,7 +9,7 @@
 $ cat file.sh | gist
 
 # set file name
-$ cat file.sh | gist -n "myfile.sh"
+$ cat file.sh | gist -f "myfile.sh"
 
 # make public
 $ cat file.sh | gist -p
