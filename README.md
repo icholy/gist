@@ -6,22 +6,22 @@
 
 ``` sh
 # read from stdin
-$ cat file.sh | gist
+cat file.sh | gist
 
 # set file name
-$ cat file.sh | gist -f "myfile.sh"
+cat file.sh | gist -f "myfile.sh"
 
 # make public
-$ cat file.sh | gist -p
+cat file.sh | gist -p
 
 # multiple files
-$ gist *.js
+gist *.js
 ```
 
 ## Install:
 
 ``` sh
-$ go get github.com/icholy/gist
+go get github.com/icholy/gist
 ```
 
 For auth, the tool looks for an environment variable called `GITHUB_TOKEN`
