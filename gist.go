@@ -29,13 +29,15 @@ func (t *TokenSource) Token() (*oauth2.Token, error) {
 	return (*oauth2.Token)(t), nil
 }
 
-func getFilesFromStdin() (map[github.GistFilename]github.GistFile, error) {
+type GistFiles map[github.GistFilename]github.GistFile
+
+func getFilesFromStdin() (GistFiles, error) {
 	data, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		return nil, err
 	}
 	content := string(data)
-	return map[github.GistFilename]github.GistFile{
+	return GistFiles{
 		github.GistFilename(fileName): github.GistFile{
 			Content: &content,
 		},
@@ -55,8 +57,8 @@ func readFile(fname string) (string, error) {
 	return string(data), nil
 }
 
-func getFilesFromArgs() (map[github.GistFilename]github.GistFile, error) {
-	files := make(map[github.GistFilename]github.GistFile)
+func getFilesFromArgs() (GistFiles, error) {
+	files := make(GistFiles)
 	for _, arg := range flag.Args() {
 		content, err := readFile(arg)
 		if err != nil {
@@ -69,7 +71,7 @@ func getFilesFromArgs() (map[github.GistFilename]github.GistFile, error) {
 	return files, nil
 }
 
-func getFiles() (map[github.GistFilename]github.GistFile, error) {
+func getFiles() (GistFiles, error) {
 	if flag.NArg() > 0 {
 		return getFilesFromArgs()
 	} else {
