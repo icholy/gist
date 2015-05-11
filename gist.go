@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path"
 
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
@@ -64,7 +65,8 @@ func getFilesFromArgs() (GistFiles, error) {
 		if err != nil {
 			return nil, err
 		}
-		files[github.GistFilename(arg)] = github.GistFile{
+		name := github.GistFilename(path.Base(arg))
+		files[name] = github.GistFile{
 			Content: &content,
 		}
 	}
