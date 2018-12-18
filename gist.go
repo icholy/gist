@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -91,7 +92,7 @@ func main() {
 	client := github.NewClient(
 		oauth2.NewClient(oauth2.NoContext, &ts),
 	)
-	gist, _, err := client.Gists.Create(&github.Gist{
+	gist, _, err := client.Gists.Create(context.Background(), &github.Gist{
 		Files:  files,
 		Public: &public,
 	})
