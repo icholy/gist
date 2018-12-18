@@ -91,7 +91,7 @@ func main() {
 	client := github.NewClient(
 		oauth2.NewClient(oauth2.NoContext, &ts),
 	)
-	gist, _, err := client.Gists.Create(&github.Gist{
+	gist, _, err := client.Gists.Create(nil, &github.Gist{
 		Files:  files,
 		Public: &public,
 	})
